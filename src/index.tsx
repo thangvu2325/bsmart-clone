@@ -1,15 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { ConfigProvider } from "antd";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import GlobalStyle from "./components/GlobalStyle";
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <ConfigProvider theme={{ token: { colorPrimary: "#0e0a38" } }}>
+      <GlobalStyle>
+        <App />
+      </GlobalStyle>
+    </ConfigProvider>
   </React.StrictMode>
 );
 

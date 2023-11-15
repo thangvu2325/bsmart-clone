@@ -1,11 +1,18 @@
 import { FunctionComponent, ReactNode } from "react";
+import Header from "../components/Header";
+import { Layout } from "antd";
 
 interface DefaultLayoutProps {
   children: ReactNode;
 }
 
 const DefaultLayout: FunctionComponent<DefaultLayoutProps> = ({ children }) => {
-  return <div>{children}</div>;
+  return (
+    <Layout>
+      <Header></Header>
+      <div>{children}</div>
+    </Layout>
+  );
 };
 
 export default DefaultLayout;
