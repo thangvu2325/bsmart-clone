@@ -13,7 +13,6 @@
 }
 .left {
   .left_brand-list {
-    margin-right: 20px;
     .left_list-item {
       cursor: pointer;
       width: 25px;
@@ -28,10 +27,6 @@
       }
     }
   }
-
-  .left_contact {
-    display: flex;
-  }
 }
 .middle {
   .contact {
@@ -42,8 +37,8 @@
   }
 }
 .search {
+  text-align: center;
   display: block;
-  $main-color: "#333";
   flex-basis: 46%;
   position: relative;
   width: 75%;
@@ -94,6 +89,11 @@
 // screen
 @media screen and (max-width: 1200px) {
   .search {
+    display: none;
+  }
+}
+@media screen and (max-width: 992px) {
+  .wrap {
     display: none;
   }
 }

@@ -9,11 +9,29 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <ConfigProvider theme={{ token: { colorPrimary: "#0e0a38" } }}>
-      <GlobalStyle>
+    <GlobalStyle>
+      <ConfigProvider
+        theme={{
+          token: {
+            colorPrimary: "#ff630e",
+            fontFamily: "Roboto, sans-serif",
+            colorBgBase: "#ffffff",
+            colorLinkHover: "#ff630e",
+            colorLink: "#130f40",
+            colorLinkActive: "#ff630e",
+          },
+          components: {
+            Typography: {},
+            Dropdown: {
+              colorBgTextHover: "#ff630e",
+              motionDurationMid: "0s",
+            },
+          },
+        }}
+      >
         <App />
-      </GlobalStyle>
-    </ConfigProvider>
+      </ConfigProvider>
+    </GlobalStyle>
   </React.StrictMode>
 );
 

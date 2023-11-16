@@ -5,3 +5,8 @@ export type RouteType<> = {
   component: ComponentType;
   layout?: ComponentType;
 };
+export type iconType = {
+  width?: string;
+  height?: string;
+  className?: string;
+};

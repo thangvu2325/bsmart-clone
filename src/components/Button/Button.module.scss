@@ -1,0 +1,27 @@
+.wrapper {
+  display: block;
+  padding: 15px 7px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1px;
+
+  .btn-title {
+    margin: 0;
+  }
+  ~ .wrapper {
+    margin-left: 16px;
+  }
+}
+.primary {
+  color: #fff;
+  background-color: var(--primary);
+  border: 1px solid var(--primary);
+  &:hover {
+    background-color: #fff;
+    color: var(--primary);
+    opacity: 0.8;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+}

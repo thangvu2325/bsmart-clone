@@ -1,4 +1,4 @@
-@import "normalize.css";
+@import "/node_modules/normalize.css/normalize.css";
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
 
 :root {
@@ -18,7 +18,21 @@ body {
   line-height: 1;
   text-rendering: optimizespeed;
   margin: 0;
+  .ant-dropdown-menu-item {
+    &:hover {
+      background-color: #fff !important;
+      color: #ff630e !important;
+    }
+    font-size: 17px !important;
+    color: #0e0a38 !important;
+    font-weight: 500 !important;
+    border-bottom: 1px solid #f5f5f5 !important;
+  }
+  .ant-card-head {
+    border: none !important;
+  }
 }
+
 * {
   box-sizing: border-box;
 }
