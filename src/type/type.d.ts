@@ -1,12 +1,23 @@
 import { ComponentType } from "react";
 
-export type RouteType<> = {
+type RouteType<> = {
   path: string;
   component: ComponentType;
   layout?: ComponentType;
 };
-export type iconType = {
+type iconType = {
   width?: string;
   height?: string;
   className?: string;
+};
+type cardType = {
+  mentor: string;
+  banner?: string;
+  avatar?: string;
+  course?: string;
+  session?: number;
+  price?: number;
+  count?: number;
+  description: string;
+  rate?: number;
 };

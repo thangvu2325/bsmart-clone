@@ -1,0 +1,125 @@
+.wrap {
+  width: 100%;
+  .container {
+    transition: 0.5s;
+    border-radius: 10px;
+    width: 90%;
+    border: 1px solid #999;
+    margin-top: 10px;
+    .banner {
+      border-radius: 10px;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      object-fit: cover;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      height: 200px;
+      position: relative;
+      border-bottom: 1px solid #999;
+      .avatar {
+        position: absolute;
+        z-index: 99;
+        width: 80px;
+        height: 80px;
+        border: 2px solid #999;
+        padding: 2px;
+        background-color: #fff;
+        bottom: -20%;
+        left: 20px;
+        border-radius: 5px;
+        .avatar_content {
+          width: 73px;
+          height: 73px;
+          border-radius: 10px;
+        }
+      }
+    }
+    .body {
+      padding: 40px 16px 16px 16px;
+      border: 1px solid #c1c1c1;
+      position: relative;
+      background-color: transparent;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+      .title {
+        text-align: left;
+
+        h5 {
+          display: flex;
+          align-items: center;
+          margin-top: 5px;
+          margin-bottom: 8px;
+          line-height: 27.5px;
+          min-height: 55px;
+          max-height: 55px;
+          color: #130f40;
+          font-size: 24px;
+          font-weight: 700;
+        }
+      }
+      .image_bug {
+        height: 50px;
+        width: 50px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        .img {
+          object-fit: fill;
+        }
+      }
+      .mentor {
+        display: flex;
+        justify-content: left;
+        text-align: left;
+        font-size: 1.6rem;
+        font-weight: 500;
+        margin-bottom: 10px;
+        color: #999;
+        span {
+          margin-left: 5px;
+          color: var(--primary);
+        }
+      }
+      .description {
+        margin-top: 10px;
+        font-weight: 400;
+        text-align: left;
+        line-height: 25px;
+        font-size: 1.6rem;
+        p {
+          margin: 0;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          height: 75px;
+        }
+      }
+      .feedback {
+        .price {
+          font-weight: bold;
+          color: firebrick;
+          font-size: 18px;
+          margin-right: 6px;
+        }
+        .session {
+          span {
+            font-style: italic;
+            font-size: 1.6rem;
+            color: #212529;
+            padding: 3px;
+            padding-left: 8px;
+          }
+        }
+      }
+    }
+  }
+}
+.btn {
+  margin-top: 8px;
+  width: 100%;
+  padding: 10px 20px;
+  font-size: 20px;
+  border: none;
+  border-radius: 5px;
+  font-weight: 400;
+}
