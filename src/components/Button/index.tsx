@@ -19,6 +19,7 @@ interface ButtonCustomProps
   rightIcon?: ReactNode;
   onClick?: React.MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
   className?: string;
+  type?: string;
 }
 
 const cx = classNames.bind(styles);
@@ -38,6 +39,7 @@ function ButtonCustom({
   children,
   leftIcon,
   rightIcon,
+  type,
   onClick,
   ...passProps
 }: ButtonCustomProps) {
@@ -75,7 +77,7 @@ function ButtonCustom({
   return (
     <>
       {Comp === "button" ? (
-        <button className={classes} {...props}>
+        <button className={classes} {...props} type={type}>
           <span className={cx("btn-title")}>{children}</span>
         </button>
       ) : (

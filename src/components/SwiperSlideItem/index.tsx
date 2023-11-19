@@ -67,12 +67,8 @@ const SwiperSliderItem: FunctionComponent<SwiperSliderItemProps> = ({
       >
         {data?.length
           ? data.map((item) => (
-              <SwiperSlide key={item.description}>
-                <div
-                  style={{
-                    width: "316.5px",
-                  }}
-                >
+              <SwiperSlide key={item.description || Math.random()}>
+                <div>
                   <Comp data={item}></Comp>
                 </div>
               </SwiperSlide>

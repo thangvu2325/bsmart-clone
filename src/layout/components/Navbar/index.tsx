@@ -2,8 +2,10 @@ import { FunctionComponent } from "react";
 import styles from "./Navbar.module.scss";
 import classNames from "classnames/bind";
 import { Flex, Image, MenuProps } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import MenuDropdown from "../../../components/MenuDropdown";
+import { IconMenu2 } from "@tabler/icons-react";
+import routes from "../../../config/route";
 const cx = classNames.bind(styles);
 
 interface NavbarProps {}
@@ -58,6 +60,9 @@ const blogItems: MenuProps["items"] = [
   },
 ];
 const Navbar: FunctionComponent<NavbarProps> = () => {
+  const location = useLocation();
+  const { pathname } = location;
+  console.log(pathname);
   return (
     <div className={cx("wrap")}>
       <Flex align="center" justify="space-between" className={cx("container")}>
@@ -66,36 +71,76 @@ const Navbar: FunctionComponent<NavbarProps> = () => {
             src="https://bsmart.edu.vn/files/icon-logo.webp"
             preview={false}
             alt="logo"
-            width={190}
-            height={75}
+            width={220}
+            height={80}
           ></Image>
         </div>
         <div className={cx("middle")}>
           <Flex align="center" className={cx("content")}>
             <div className={cx("content-title")}>
-              <Link to={"/"} className={cx("active")}>
+              <Link
+                to={routes.home}
+                className={cx("", {
+                  active: pathname === routes.home,
+                })}
+              >
                 Trang Chủ
               </Link>
             </div>
             <div className={cx("content-title")}>
               <MenuDropdown menu={aboutUsItems}>
-                <Link to={"/aboutus"}>Về Chúng Tôi</Link>
+                <Link
+                  to={routes.aboutus}
+                  className={cx("", {
+                    active: pathname === routes.aboutus,
+                  })}
+                >
+                  Về Chúng Tôi
+                </Link>
               </MenuDropdown>
             </div>
             <div className={cx("content-title")}>
-              <Link to={"/"}>Khóa Học STEM</Link>
+              <Link
+                to={routes.stem}
+                className={cx("", {
+                  active: pathname === routes.stem,
+                })}
+              >
+                Khóa Học STEM
+              </Link>
             </div>
             <div className={cx("content-title")}>
               <MenuDropdown menu={courseItems}>
-                <Link to={"/"}>Khóa Học</Link>
+                <Link
+                  to={routes.course}
+                  className={cx("", {
+                    active: pathname === routes.course,
+                  })}
+                >
+                  Khóa Học
+                </Link>
               </MenuDropdown>
             </div>
             <div className={cx("content-title")}>
-              <Link to={"/"}>Mentor</Link>
+              <Link
+                to={routes.mentor}
+                className={cx("", {
+                  active: pathname === routes.mentor,
+                })}
+              >
+                Mentor
+              </Link>
             </div>
             <div className={cx("content-title")}>
               <MenuDropdown menu={blogItems}>
-                <Link to={"/"}>Blog</Link>
+                <Link
+                  to={routes.blog}
+                  className={cx("", {
+                    active: pathname === routes.blog,
+                  })}
+                >
+                  Blog
+                </Link>
               </MenuDropdown>
             </div>
           </Flex>
@@ -108,6 +153,9 @@ const Navbar: FunctionComponent<NavbarProps> = () => {
             height={62}
           ></Image>
           <span className={cx("right-count")}>0</span>
+        </div>
+        <div className={cx("bars")}>
+          <IconMenu2 width={24} height={24} stroke={3}></IconMenu2>
         </div>
       </Flex>
     </div>

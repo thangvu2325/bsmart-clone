@@ -4,34 +4,44 @@ import { ConfigProvider } from "antd";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import GlobalStyle from "./components/GlobalStyle";
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <GlobalStyle>
-      <ConfigProvider
-        theme={{
-          token: {
-            colorPrimary: "#ff630e",
-            fontFamily: "Roboto, sans-serif",
-            colorBgBase: "#ffffff",
-            colorLinkHover: "#ff630e",
-            colorLink: "#130f40",
-            colorLinkActive: "#ff630e",
-          },
-          components: {
-            Typography: {},
-            Dropdown: {
-              colorBgTextHover: "#ff630e",
-              motionDurationMid: "0s",
+    <Provider store={store}>
+      <GlobalStyle>
+        <ConfigProvider
+          theme={{
+            token: {
+              colorPrimary: "#ff630e",
+              fontFamily: "Roboto, sans-serif",
+              colorBgBase: "#ffffff",
+              colorLinkHover: "#ff630e",
+              colorLink: "#130f40",
+              colorLinkActive: "#ff630e",
             },
-          },
-        }}
-      >
-        <App />
-      </ConfigProvider>
-    </GlobalStyle>
+            components: {
+              Typography: {},
+              Dropdown: {
+                colorBgTextHover: "#ff630e",
+                motionDurationMid: "0s",
+              },
+              Breadcrumb: {
+                linkColor: "#fff",
+                itemColor: "#fff",
+                colorIcon: "#fff",
+                linkHoverColor: "#ff630e",
+              },
+            },
+          }}
+        >
+          <App />
+        </ConfigProvider>
+      </GlobalStyle>
+    </Provider>
   </React.StrictMode>
 );
 

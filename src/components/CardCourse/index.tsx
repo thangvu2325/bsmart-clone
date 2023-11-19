@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { cardType } from "../../type/type";
+import { courseType } from "../../type/type";
 import { Flex, Image } from "antd";
 import classNames from "classnames/bind";
 import styles from "./CardCourse.module.scss";
@@ -11,13 +11,26 @@ import ButtonCustom from "../Button";
 
 const cx = classNames.bind(styles);
 interface CardCourseProps {
-  data: cardType;
+  data: courseType;
+  className?: string;
 }
-
-const CardCourse: FunctionComponent<CardCourseProps> = ({ data }) => {
+const BugImage: Array<string> = [
+  "https://bsmart.edu.vn/files/Levels/1/ant-icon-01.webp",
+  "https://bsmart.edu.vn/files/Levels/1/ant-icon-02.webp",
+  "https://bsmart.edu.vn/files/Levels/1/ant-icon-03.webp",
+  "https://bsmart.edu.vn/files/Levels/1/ant-icon-04.webp",
+];
+const CardCourse: FunctionComponent<CardCourseProps> = ({
+  data,
+  className,
+}) => {
   return (
     <Flex justify="center" className={cx("wrap")}>
-      <div className={cx("container")}>
+      <div
+        className={cx("container", {
+          [`${className}`]: true,
+        })}
+      >
         <Link to="/">
           <div
             className={cx("banner")}
@@ -38,7 +51,7 @@ const CardCourse: FunctionComponent<CardCourseProps> = ({ data }) => {
           </Link>
           <div className={cx("image_bug")}>
             <Image
-              src="https://bsmart.edu.vn/files/Levels/1/ant-icon-03.webp"
+              src={BugImage[data?.level ? data.level - 1 : 0]}
               preview={false}
               width={50}
               height={50}

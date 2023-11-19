@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { cardType } from "../../type/type";
+import { courseType } from "../../type/type";
 import { Flex, Image } from "antd";
 import classNames from "classnames/bind";
 import styles from "./CardMember.module.scss";
@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 const cx = classNames.bind(styles);
 interface CardMemberProps {
-  data: cardType;
+  data: courseType;
 }
 
 const CardMember: FunctionComponent<CardMemberProps> = ({ data }) => {

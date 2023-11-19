@@ -6,6 +6,7 @@
     width: 90%;
     border: 1px solid #999;
     margin-top: 10px;
+
     .banner {
       border-radius: 10px;
       border-bottom-left-radius: 0;
@@ -19,7 +20,7 @@
       border-bottom: 1px solid #999;
       .avatar {
         position: absolute;
-        z-index: 99;
+        z-index: 18;
         width: 80px;
         height: 80px;
         border: 2px solid #999;

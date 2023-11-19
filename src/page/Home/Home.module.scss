@@ -20,7 +20,7 @@
     .aboutus_container {
       position: relative;
       max-width: 1320px;
-      z-index: 99;
+      z-index: 18;
       margin: 0 auto;
       text-align: center;
       padding: 0 12px;
@@ -33,6 +33,7 @@
         margin-bottom: 30px;
       }
       .aboutus_content {
+        max-width: 100%;
         .aboutus_left {
           width: 50%;
           padding: 0 12px;
@@ -71,7 +72,7 @@
     margin-bottom: 60px;
     .advantage_container {
       margin: 0 auto;
-      max-width: 1320px !important;
+      max-width: 1320px;
       padding: 0 12px;
       .container_title {
         margin: 0;
@@ -114,6 +115,7 @@
   }
   // learning
   .learning {
+    transition: all 0.2s !important;
     .container {
       // padding: 0 12px;
       margin-bottom: 10px;
@@ -267,7 +269,7 @@
       margin: 0 auto;
       padding: 0 12px;
       position: relative;
-      z-index: 99;
+      z-index: 18;
       .content {
         text-align: center;
         h4 {
@@ -304,7 +306,7 @@
       margin: 0 auto;
       padding: 0 12px;
       position: relative;
-      z-index: 99;
+      z-index: 18;
       .content {
         text-align: center;
         margin: 0 auto;
@@ -317,5 +319,200 @@
         }
       }
     }
+  }
+}
+@media (min-width: 576px) {
+  .aboutus_container {
+    max-width: 540px !important;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .aboutus {
+    padding: 20px 0 !important;
+  }
+  .aboutus_title {
+    margin-top: 20px !important;
+    line-height: 50px !important;
+    font-size: 32px !important;
+    font-weight: 600 !important;
+    margin-bottom: 0 !important;
+  }
+  .advantage {
+    padding: 0 !important;
+    margin-bottom: 60px !important;
+    transition: all 0.2s !important;
+  }
+  .advantage .card {
+    flex: 0 0 auto !important;
+    width: 100% !important;
+  }
+}
+@media (min-width: 576px) {
+  .aboutus_container {
+    max-width: 540px !important;
+  }
+  .aboutus_left {
+    flex: 0 0 auto !important;
+  }
+  .aboutus_right {
+    flex: 0 0 auto !important;
+  }
+  .advantage_container {
+    max-width: 540px !important;
+  }
+}
+@media (min-width: 768px) {
+  .aboutus_container {
+    max-width: 720px !important;
+  }
+  .aboutus_left,
+  .aboutus_right {
+    flex: 0 0 auto !important;
+    width: 50% !important;
+  }
+  .advantage_container {
+    max-width: 720px !important;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .aboutus_content {
+    display: flex !important;
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+  }
+  .aboutus_left {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    transition: all 0.2s !important;
+  }
+  .aboutus_right {
+    display: flex !important;
+    flex: 0 0 auto !important;
+    width: 100% !important;
+  }
+  .learning .right,
+  .learning .left {
+    display: block !important;
+    margin: 0 auto !important;
+    padding: 100px 0 !important;
+    margin-bottom: 10px !important;
+    border-radius: 10px !important;
+    flex: 0 0 auto !important;
+    width: calc(100% - 40px) !important;
+    clip-path: none !important;
+  }
+  .learning .left .content,
+  .learning .right .content {
+    bottom: 20px !important;
+  }
+  .learning .right .content h2,
+  .learning .left .content h2 {
+    font-size: 26px !important;
+  }
+  .learning .right .content p,
+  .learning .left .content p {
+    font-size: 16px !important;
+  }
+}
+@media only screen and (min-width: 767px) and (max-width: 992px) {
+  .aboutus {
+    padding: 20px 0 !important;
+  }
+  .aboutus_content {
+    display: flex !important;
+    flex-direction: column-reverse !important;
+  }
+  .aboutus_right,
+  .aboutus_left {
+    flex: 0 0 auto !important;
+    width: 100% !important;
+  }
+  .aboutus_left {
+    display: flex !important;
+    flex-direction: column !important;
+    transition: all 0.2s !important;
+  }
+  .advantage {
+    padding: 0 !important;
+    margin-bottom: 60px !important;
+    transition: all 0.2s !important;
+  }
+  .advantage .card {
+    flex: 0 0 auto !important;
+    width: 100% !important;
+  }
+  .learning .right,
+  .learning .left {
+    margin: 0 auto !important;
+    padding: 220px 20px !important;
+    margin-bottom: 10px !important;
+    border-radius: 10px !important;
+    flex: 0 0 auto !important;
+    width: 100% !important;
+    clip-path: none !important  ;
+  }
+  .learning .left .content h2 {
+    font-size: 25px !important;
+  }
+  .learning .left .content p {
+    font-size: 20px !important;
+  }
+}
+@media (min-width: 992px) {
+  .aboutus_container {
+    max-width: 960px !important;
+  }
+  .advantage_container {
+    max-width: 960px !important;
+  }
+}
+@media only screen and (max-width: 992px) {
+  .aboutus_left p {
+    font-size: 15px !important;
+    line-height: 23px !important;
+    margin-top: 10px !important;
+  }
+}
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+  .aboutus_left {
+    display: flex !important;
+    flex-direction: column !important;
+    transition: all 0.2s !important;
+  }
+  .advantage {
+    padding: 0 !important;
+    margin-bottom: 60px !important;
+    transition: all 0.2s !important;
+  }
+  .learning .right,
+  .learning .left {
+    display: block !important;
+    margin: 0 auto !important;
+    margin-bottom: 10px !important;
+    border-radius: 10px !important;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  .aboutus_container {
+    max-width: 1320px !important;
+  }
+  .aboutus_left {
+    display: flex !important;
+    flex-direction: column !important;
+    transition: all 0.2s !important;
+  }
+  .advantage_container {
+    max-width: 1320px !important;
+  }
+  .learning {
+    transition: all 0.2s !important;
+  }
+  .learning .right,
+  .learning .left {
+    display: block !important;
+    margin: 0 auto !important;
+    margin-bottom: 10px !important;
+    border-radius: 10px !important;
   }
 }

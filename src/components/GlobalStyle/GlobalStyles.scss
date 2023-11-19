@@ -11,8 +11,11 @@ html {
 :root {
   --primary: #ff630e;
   --s-primary: #0e0a38;
+  --sliderperview: 2;
 }
 body {
+  width: 100%;
+  overflow-x: hidden;
   font-family: "Roboto", sans-serif;
   font-size: 1.6rem;
   line-height: 1;
@@ -30,6 +33,12 @@ body {
   }
   .ant-card-head {
     border: none !important;
+  }
+  .ant-breadcrumb-link {
+    color: #fff;
+  }
+  .ant-breadcrumb-separator {
+    color: #fff !important;
   }
 }
 

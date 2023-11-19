@@ -10,12 +10,13 @@ type iconType = {
   height?: string;
   className?: string;
 };
-type cardType = {
+type courseType = {
   mentor: string;
   banner?: string;
   avatar?: string;
   course?: string;
   session?: number;
+  level?: number;
   price?: number;
   count?: number;
   description: string;
