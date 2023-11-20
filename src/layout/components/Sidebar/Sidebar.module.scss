@@ -1,19 +1,32 @@
-.wrap {
+.shadow {
   display: none;
-  position: fixed;
-  z-index: 9999;
+  position: absolute;
   top: 0;
-  left: 0;
   bottom: 0;
   right: 0;
+  left: 0;
   background-color: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  animation: fade-in-out ease-in 0.5s;
+}
+.wrap {
+  display: none;
+  position: sticky;
+  z-index: 99999;
+  background-color: #fff;
+  top: 0;
+  bottom: 0;
+  margin-left: auto;
+  height: 100vh;
+  width: 290px;
   transition: all 0.5s ease-out 0s;
-  width: 100%;
+  animation: fade-in-out ease-in 0.5s;
 
-  transition: all 0.5s ease-out 0s;
   .container {
-    scroll-behavior: smooth;
     padding: 20px;
+    height: 100vh;
+    overflow-y: scroll;
+    overscroll-behavior: contain;
     .top {
       .logo {
         width: 100px;
@@ -94,25 +107,27 @@
     }
   }
 }
-@media screen and (max-width: 992px) {
+.show {
+  display: block !important;
+  animation: fade-in ease-in 0.5s !important;
 }
-@media only screen and (max-width: 767px) {
-  .container {
-    width: 290px;
-    background-color: #fff;
-    height: 100%;
-    position: absolute;
-    right: 0;
-    overflow-y: scroll;
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateX(100%); /* Đẩy từ phải vào trái */
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0); /* Kết thúc với vị trí ban đầu (0) */
   }
 }
-@media only screen and (min-width: 767px) and (max-width: 992px) {
-  .container {
-    padding: 20px;
-    width: 290px;
-    background-color: #fff;
-    height: 100%;
-    position: absolute;
-    right: 0;
+@keyframes fade-in-out {
+  0% {
+    opacity: 1;
+    transform: translateX(0); /* Bắt đầu từ vị trí ban đầu (0) */
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(100%); /* Đẩy từ trái sang phải */
   }
 }

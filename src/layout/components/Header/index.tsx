@@ -10,12 +10,38 @@ import {
   IconYoutube,
 } from "../../../components/Icon";
 
+import { useSearchParams } from "react-router-dom";
+import { Link } from "react-router-dom";
+import routes from "../../../config/route";
+import { useAppDispatch, useAppSelector } from "../../../redux/hook";
+import { changeFilter } from "../../../redux/coursesFilterSlice";
+import { courseType } from "../../../type/type";
+import { coursesRemainingSelector } from "../../../redux/selectors";
 const cx = classNames.bind(styles);
 
 interface HeaderProps {}
 
 const Header: FunctionComponent<HeaderProps> = () => {
+  const [searchParams] = useSearchParams();
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
+  const [searchInput, setSearchInput] = useState<string>("");
+  const courseSearch: Array<courseType> = useAppSelector(
+    coursesRemainingSelector
+  );
+  const refSearchMenu = useRef<HTMLSpanElement>(null);
+  if (refSearchMenu.current && searchInput?.length && courseSearch.length) {
+    refSearchMenu.current.style.display = "block";
+  } else if (refSearchMenu.current && (!searchInput || !courseSearch.length)) {
+    refSearchMenu.current.style.display = "none";
+  }
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(
+      changeFilter({ NameCourse: searchParams.get("NameCourse") || "" })
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const ref = useRef<HTMLDivElement>(null);
   if (ref.current) {
     if (isScrolled) {
@@ -99,20 +125,48 @@ const Header: FunctionComponent<HeaderProps> = () => {
           </Flex>
         </div>
         <Flex className={cx("search")} justify="center">
-          <Input
-            placeholder="Tìm kiếm khóa học"
-            type="text"
-            className={cx("search-input")}
-            suffix={
-              <IconSearch
-                className={cx("seach-icon")}
-                width={18}
-                height={18}
-                stroke={4}
-              ></IconSearch>
-            }
-          />
+          <span className={cx("search-content")}>
+            <Input
+              placeholder="Tìm kiếm khóa học"
+              type="text"
+              className={cx("search-input")}
+              suffix={
+                <IconSearch
+                  className={cx("search-icon")}
+                  width={18}
+                  height={18}
+                  stroke={4}
+                ></IconSearch>
+              }
+              value={searchInput ? searchInput : ""}
+              onChange={(e) => {
+                const valueInput = e.target.value;
+                dispatch(changeFilter({ NameCourse: valueInput }));
+                setSearchInput(e.target.value);
+              }}
+              onKeyDown={(event) => {
+                if (event.key === "Enter") {
+                }
+              }}
+            />
+            <span className={cx("search-menu")} ref={refSearchMenu}>
+              {courseSearch.length
+                ? courseSearch.map((course) => (
+                    <Link
+                      to={`${routes.course}?NameCourse=${course.course}`}
+                      key={course.courseId}
+                      onClick={() => {
+                        setSearchInput("");
+                      }}
+                    >
+                      {course.course}
+                    </Link>
+                  ))
+                : ""}
+            </span>
+          </span>
         </Flex>
+
         <Flex className={cx("right")}>
           <div className={cx("right_action")}>Đăng nhập</div>
           <span> | </span>

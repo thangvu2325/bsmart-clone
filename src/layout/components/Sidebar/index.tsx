@@ -5,11 +5,15 @@ import { Flex, Image, Input } from "antd";
 import { IconMinus, IconPlus, IconSearch, IconX } from "@tabler/icons-react";
 import { Link } from "react-router-dom";
 import routes from "../../../config/route";
+import { sidebarStateSelector } from "../../../redux/selectors";
 import {
   IconFacebook,
   IconLinkedin,
   IconYoutube,
 } from "../../../components/Icon";
+import { useAppDispatch, useAppSelector } from "../../../redux/hook";
+import { toggleStateSidedbar } from "../../../redux/settingsSlice";
+
 const cx = classNames.bind(styles);
 interface SidebarProps {}
 interface CreateElementProps {
@@ -62,10 +66,23 @@ const CreateElement: FunctionComponent<CreateElementProps> = ({
   );
 };
 const Sidebar: FunctionComponent<SidebarProps> = () => {
+  const isSidebarState = useAppSelector(sidebarStateSelector);
+  const dispatch = useAppDispatch();
+  const handleToggleStatusSidebar = () => {
+    dispatch(toggleStateSidedbar());
+  };
   return (
     <>
-      <div className={cx("shadow")}></div>
-      <div className={cx("wrap")}>
+      <div
+        className={cx("shadow", {
+          show: isSidebarState,
+        })}
+      ></div>
+      <div
+        className={cx("wrap", {
+          show: isSidebarState,
+        })}
+      >
         <div className={cx("container")}>
           <Flex className={cx("top")} align="center" justify="space-between">
             <span className={cx("logo")}>
@@ -76,7 +93,11 @@ const Sidebar: FunctionComponent<SidebarProps> = () => {
                 alt="logo"
               ></img>
             </span>
-            <span className={cx("action")}>
+            <span
+              className={cx("action")}
+              onClick={handleToggleStatusSidebar}
+              style={{ cursor: "pointer" }}
+            >
               <IconX width={24} height={24} stroke={7}></IconX>
             </span>
           </Flex>

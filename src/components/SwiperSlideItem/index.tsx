@@ -33,7 +33,6 @@ const SwiperSliderItem: FunctionComponent<SwiperSliderItemProps> = ({
 
   const handleNext = useCallback(() => {
     if (!sliderRef.current) return;
-    console.log(sliderRef.current?.swiper);
     sliderRef.current?.swiper.slideNext();
   }, []);
   const setActiveIndexSlide = useCallback((index: number) => {

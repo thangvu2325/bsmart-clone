@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useEffect } from "react";
 import classNames from "classnames/bind";
 import "swiper/css";
 import styles from "./Home.module.scss";
@@ -14,148 +14,19 @@ import {
   IconUsers,
 } from "../../components/Icon";
 import SwiperSliderItem from "../../components/SwiperSlideItem";
-import { courseType } from "../../type/type";
 import CardCourse from "../../components/CardCourse";
 import CardMember from "../../components/CardMember";
 import { useAppSelector } from "../../redux/hook";
-import { mostFamoustCoursesSelecter } from "../../redux/selectors";
+import {
+  getUrgentlyCoursesSelecter,
+  mentorsSelector,
+  mostFamoustCoursesSelecter,
+} from "../../redux/selectors";
+import routes from "../../config/route";
+import { courseType } from "../../type/type";
 export interface HomeProps {}
 const cx = classNames.bind(styles);
 
-const dataSwiperSecond: Array<courseType> = [
-  {
-    mentor: "Phan Nhật Tân",
-    banner: "https://bsmart.edu.vn/files/CourseImage/PRJ301.webp",
-    avatar:
-      "https://bsmart.edu.vn/files/Avatar_Mentor/c8b543a9e0773c296566.webp",
-    course: "Java Web Application_Cấp Tốc",
-    session: 3,
-    price: 500000,
-    count: 22,
-    description: "Khóa này sẽ giúp các bạn vượt qua kì thi một cách dễ dàng!",
-    rate: 5,
-  },
-  {
-    mentor: "Đoàn Ngọc Trân Châu",
-    banner: "https://bsmart.edu.vn/files/CourseImage/DB_captoc.webp",
-    avatar: "https://bsmart.edu.vn/files/Avatar_Mentor/bbb.webp",
-    course: "Database_Cấp Tốc",
-    session: 2,
-    price: 500000,
-    count: 16,
-    description: "Giúp các bạn vượt qua kì thi môn Database một cách dễ dàng!",
-    rate: 5,
-  },
-  {
-    mentor: "Phan Nhật Tân",
-    banner:
-      "https://bsmart.edu.vn/files/CourseImage/object-oriented-programming-oop.png",
-    avatar:
-      "https://bsmart.edu.vn/files/Avatar_Mentor/c8b543a9e0773c296566.webp",
-    course: "OOP_Cấp Tốc",
-    session: 2,
-    price: 500000,
-    count: 18,
-    description: "Tự tin bước vào kì thi thực hành chỉ với 2 buổi học !",
-    rate: 5,
-  },
-  {
-    mentor: "Đỗ Minh Quân",
-    banner:
-      "https://bsmart.edu.vn/files/CourseImage/reactjs-nhung-dieu-ban-can-phai-biet-3.webp",
-    avatar: "https://bsmart.edu.vn/files/Avatar_Mentor/qqq.webp",
-    course: "ReactJS_Cấp Tốc",
-    session: 2,
-    price: 500000,
-    count: 19,
-    description: "Tự tin lấy điểm cao thực hành chỉ với 2 buổi học cấp tốc ",
-    rate: 5,
-  },
-  {
-    mentor: "Tô Lý Hữu Nhân",
-    banner:
-      "https://bsmart.edu.vn/files/CourseImage/software-requirement-specification-1-638.webp",
-    avatar: "https://bsmart.edu.vn/files/Avatar_Mentor/ezgif-1-9a0071b969.webp",
-    course: "Software Requirement_Cấp Tốc",
-    session: 3,
-    price: 500000,
-    count: 40,
-    description:
-      "Zero to Hero, khóa học cấp tốc này giúp các bạn sẽ dễ dàng hiểu và làm được bài thi thực hành chỉ với các thao tác đơn giản!",
-    rate: 5,
-  },
-];
-
-const dataSwiperThird: Array<courseType> = [
-  {
-    mentor: "Phan Nhật Tân",
-    banner:
-      "https://bsmart.edu.vn/files/Avatar_Mentor/c8b543a9e0773c296566.webp",
-    description:
-      "Nhật Tân, với kinh nghiệm giảng dạy và chia sẻ cho nhiều học viên, tôi đã xây dựng được niềm tin rất lớn đối với cộng đồng. Hy vọng tôi sẽ đem đến cho các bạn những trải nghiệm đáng quý trong quá trình học tập cùng tôi.",
-  },
-  {
-    mentor: "Đỗ Minh Quân",
-    banner: "https://bsmart.edu.vn/files/Avatar_Mentor/qqq.webp",
-    description:
-      "Tôi tên là Đỗ Minh Quân, tốt nghiệp ngành công nghệ thông tin, chuyên ngành công nghệ phần mềm. Tôi là một lập trình viên Front-end có hơn 3 năm kinh nghiệm trong việc phát triển giao diện cho các trang web và ứng dụng di động. Tôi đã từng tham gia các dự án với công nghệ HTML, CSS, JavaScript, React ... và từ đó tích lũy được nhiều kiến thức, kinh nghiệm trong lĩnh vực này. Tôi muốn chia sẻ kiến thức của mình cho những người mới bắt đầu, giúp họ có thể nhanh chóng tiếp cận và đạt được thành công trong lĩnh vực lập trình Front-end.",
-  },
-  {
-    mentor: "Team STEM Mentor",
-    banner: "https://bsmart.edu.vn/files/Avatar_Mentor/stem.webp",
-    description:
-      "Xin chào mọi người, chúng tôi là giáo viên dạy STEM (khoa học, công nghệ, kỹ thuật và toán học). Chúng tôi đã có kinh nghiệm trong giảng dạy STEM trong nhiều năm và  yêu thích công việc của mình. Chúng tôi rất hân hạnh được làm việc trong lĩnh vực này và hy vọng sẽ mang lại cho các em học viên những kiến thức và kỹ năng hữu ích và dẫn đến thành công trong tương lai.",
-  },
-  {
-    mentor: "Tuấn Anh Phạm",
-    banner: "https://bsmart.edu.vn/files/Avatar_Mentor/aa.webp",
-    description:
-      "Xin chào! Tôi là Phạm Tuấn Anh - một lập trình viên với đam mê mãnh liệt về công nghệ thông tin. Tôi đã làm việc trong ngành này trong một vài năm và có kinh nghiệm làm việc với các dự án phần mềm và phát triển ứng dụng. Tôi đã từng dẫn dắt nhiều học sinh, sinh viên từ zero đến hero trong lĩnh vực công nghệ thông tin. Tôi tin rằng công nghệ thông tin sẽ tiếp tục phát triển và luôn tìm cách để cập nhật tin tức mới nhất từ ngành.",
-  },
-  {
-    mentor: "Hồ Hồng Minh",
-    banner: "https://bsmart.edu.vn/files/Avatar_Mentor/ezgif-1-95638d4605.webp",
-
-    description:
-      "Xin chào, tôi là Hồ Hồng Minh. Tôi có hơn 3 năm kinh nghiệm trong việc giảng dạy và mentor cho các học sinh, sinh viên về chuyên ngành kĩ thuật phần mềm. Tôi đã hướng dẫn nhiều dự án và có thể giúp đỡ học sinh và sinh viên thành công trong việc đạt được các mục tiêu học tập và nghề nghiệp của họ. Ngoài ra, tôi cũng đam mê nghiên cứu và đăng ký các bài báo khoa học để chia sẻ các phát hiện và kiến thức mới với cộng đồng. Tôi tin rằng giáo dục là một công cụ mạnh mẽ để đẩy mạnh sự phát triển của cá nhân, cộng đồng, và tôi mong muốn hỗ trợ các học sinh và sinh viên trong việc đạt được sự thành công trong cuộc sống và nghề nghiệp của họ.",
-  },
-  {
-    mentor: "Đoàn Ngọc Trân Châu",
-    banner: "https://bsmart.edu.vn/files/Avatar_Mentor/bbb.webp",
-
-    description:
-      "Tôi là Châu. Với mong muốn chia sẻ kiến thức của mình đến với những bạn yêu thích lập trình, tôi đã và đang hướng dẫn cho nhiều lớp học sinh và sinh viên. Với khả năng truyền đạt kiến thức một cách xúc tích và dễ hiểu nhất, tôi tin rằng tình yêu lập trình của các bạn sẽ ngày càng được nung nóng và ngày càng mãnh liệt hơn.",
-  },
-  {
-    mentor: "Tô Lý Hữu Nhân",
-    banner: "https://bsmart.edu.vn/files/Avatar_Mentor/ezgif-1-9a0071b969.webp",
-
-    description:
-      "Tôi là Hữu Nhân, hiện tại là một Business Analyst với hơn 3 năm kinh nghiệm và 2 năm với vị trí Tester/QC. Tôi đã tham gia các dự án product tới outsource. Và từ những kinh nghiệm trầy da tróc vảy khi tham gia các dự án, tôi tin rằng tôi có thể chia sẻ các kinh nghiệm về quản lý dự án, quy trình làm phầm mềm, kiểm thử phần mềm và những kinh nghiệm xử lý vấn đề.",
-  },
-  {
-    mentor: "Nguyễn Viết Châu",
-    banner:
-      "https://bsmart.edu.vn/files/Avatar_Mentor/z4269915579822-aeabe623ca8078c8fcc4fdf2780c3869.webp",
-
-    description:
-      "Xin chào! Tôi là Nguyễn Viết Châu – mentor có kinh nghiệm trong việc giảng dạy các môn học liên quan đến công nghệ thông tin. Với 3 năm kinh nghiệm làm mentor và một nền tảng kiến thức chuyên môn vững vàng, tôi tự tin rằng mình có thể giúp các bạn sinh viên nắm vững kiến thức, nâng cao kỹ năng và đạt được thành tích tốt nhất trong học tập. Tôi luôn đặt sự tiếp thu và hiểu biết của sinh viên lên hàng đầu và dùng các phương pháp giảng dạy đa dạng, trực quan để giúp các bạn hiểu bài một cách dễ dàng và thú vị. ",
-  },
-  {
-    mentor: "Nguyễn Thị Trà My",
-    banner: "https://bsmart.edu.vn/files/Avatar_Mentor/my.webp",
-
-    description:
-      "Xin chào, tôi là Nguyễn Thị Trà My. Với kinh nghiệm làm mentor cũng như giảng dạy về các môn lập trình trong ngành công nghệ thông tin, tôi sẽ giúp các bạn hiểu rõ hơn về các môn học cũng như những kinh nghiệm thực hành. Tôi sẽ đồng hành cùng các bạn trong suốt quá trình học và định hướng nghề nghiệp trong tương lai.",
-  },
-  {
-    mentor: "Trần Hòa Hiệp",
-    banner: "https://bsmart.edu.vn/files/Avatar_Mentor/ezgif-1-860162a749.webp",
-
-    description:
-      "Tôi là Trần Hòa Hiệp, một full stack developer với 5 năm kinh nghiệm về công nghệ .NET có kiến ​​thức tốt về Thiết kế cơ sở dữ liệu, Design Pattern, Phân tích và thiết kế hướng đối tượng. 2 năm trong việc đào tạo học viên là người đi làm, và sinh viên sắp ra trường.",
-  },
-];
 const LogoBrand: Array<string> = [
   "https://bsmart.edu.vn/assets/images/logo-dai-hoc-01.webp",
   "https://bsmart.edu.vn/assets/images/logo-dai-hoc-02.webp",
@@ -170,7 +41,15 @@ const ImageComponent: FunctionComponent<{ data: string }> = ({ data }) => {
   return <Image height={100} preview={false} src={data}></Image>;
 };
 const Home: FunctionComponent<HomeProps> = () => {
-  const dataSwiperFirst: any = useAppSelector(mostFamoustCoursesSelecter);
+  const mostFamoustCourses: courseType[] = useAppSelector(
+    mostFamoustCoursesSelecter
+  );
+  const urgentCourse = useAppSelector(getUrgentlyCoursesSelecter);
+  // const urgentCourse: courseType[] = [];
+  const mentorList = useAppSelector(mentorsSelector);
+  useEffect(() => {
+    document.title = "Trang chủ - Bsmart học cùng mentor";
+  }, []);
   return (
     <div className={cx("wrap")}>
       <Banner></Banner>
@@ -193,10 +72,14 @@ const Home: FunctionComponent<HomeProps> = () => {
                 khi tốt nghiệp.
               </p>
               <Flex className={cx("left_btn")} justify="center" align="center">
-                <ButtonCustom to="/" primary className={cx("btn")}>
+                <ButtonCustom to={routes.course} primary className={cx("btn")}>
                   XEM KHÓA HỌC
                 </ButtonCustom>
-                <ButtonCustom to="/" primary className={cx("btn")}>
+                <ButtonCustom
+                  to="https://www.facebook.com/bsmart.edu.vn"
+                  primary
+                  className={cx("btn")}
+                >
                   HỖ TRỢ KHÓA HỌC
                 </ButtonCustom>
               </Flex>
@@ -313,7 +196,7 @@ const Home: FunctionComponent<HomeProps> = () => {
             <h2>Khoá học tiêu biểu</h2>
             <SwiperSliderItem
               Comp={CardCourse}
-              data={dataSwiperFirst}
+              data={mostFamoustCourses}
               spaceBetween={10}
               slidesPerView={4}
               slidesPerGroup={1}
@@ -346,7 +229,7 @@ const Home: FunctionComponent<HomeProps> = () => {
             <h2>Khoá học cấp tốc</h2>
             <SwiperSliderItem
               Comp={CardCourse}
-              data={dataSwiperSecond}
+              data={urgentCourse}
               spaceBetween={10}
               slidesPerView={4}
               slidesPerGroup={1}
@@ -379,7 +262,7 @@ const Home: FunctionComponent<HomeProps> = () => {
             <h2>Mentor tiêu biểu</h2>
             <SwiperSliderItem
               Comp={CardMember}
-              data={dataSwiperThird}
+              data={mentorList}
               spaceBetween={10}
               slidesPerView={4}
               slidesPerGroup={1}
@@ -412,10 +295,14 @@ const Home: FunctionComponent<HomeProps> = () => {
             <h4>Định hướng và Chuẩn hoá lộ trình học tập</h4>
             <h2>Học Thật, Dự Án Thật, Mentor Tận Tâm</h2>
             <Flex className={cx("btn_list")} justify="center">
-              <ButtonCustom primary className={cx("btn")}>
+              <ButtonCustom to={routes.course} primary className={cx("btn")}>
                 DANH SÁCH KHÓA HỌC
               </ButtonCustom>
-              <ButtonCustom primary className={cx("btn")}>
+              <ButtonCustom
+                to="https://www.facebook.com/bsmart.edu.vn"
+                primary
+                className={cx("btn")}
+              >
                 TƯ VẤN LỘ TRÌNH
               </ButtonCustom>
             </Flex>

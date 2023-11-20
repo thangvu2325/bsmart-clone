@@ -11,14 +11,23 @@ type iconType = {
   className?: string;
 };
 type courseType = {
+  courseId: string;
   mentor: string;
   banner?: string;
   avatar?: string;
   course?: string;
   session?: number;
-  level?: number;
-  price?: number;
+  filterCourseCate: string;
+  typeOfLearning: Array<string>;
+  level: string;
+  price: number;
   count?: number;
   description: string;
   rate?: number;
+};
+type mentorType = {
+  mentorId: string;
+  banner: string;
+  mentor: string;
+  description: string;
 };

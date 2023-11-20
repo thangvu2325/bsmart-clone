@@ -1,10 +1,6 @@
 @import "/node_modules/normalize.css/normalize.css";
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
 
-:root {
-  --primary: #fe2c55;
-}
-
 html {
   font-size: 62.5%;
 }
@@ -14,12 +10,12 @@ html {
   --sliderperview: 2;
 }
 body {
-  width: 100%;
-  overflow-x: hidden;
   font-family: "Roboto", sans-serif;
   font-size: 1.6rem;
   line-height: 1;
   text-rendering: optimizespeed;
+  contain: paint;
+  background-color: #fff;
   margin: 0;
   .ant-dropdown-menu-item {
     &:hover {
@@ -38,6 +34,10 @@ body {
     color: #fff;
   }
   .ant-breadcrumb-separator {
+    color: #fff !important;
+  }
+  .ant-pagination-item-active {
+    background: var(--primary) !important;
     color: #fff !important;
   }
 }

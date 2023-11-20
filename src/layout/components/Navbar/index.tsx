@@ -6,6 +6,8 @@ import { Link, useLocation } from "react-router-dom";
 import MenuDropdown from "../../../components/MenuDropdown";
 import { IconMenu2 } from "@tabler/icons-react";
 import routes from "../../../config/route";
+import { useAppDispatch } from "../../../redux/hook";
+import { toggleStateSidedbar } from "../../../redux/settingsSlice";
 const cx = classNames.bind(styles);
 
 interface NavbarProps {}
@@ -62,7 +64,10 @@ const blogItems: MenuProps["items"] = [
 const Navbar: FunctionComponent<NavbarProps> = () => {
   const location = useLocation();
   const { pathname } = location;
-  console.log(pathname);
+  const dispatch = useAppDispatch();
+  const handleToggleStatusSidebar = () => {
+    dispatch(toggleStateSidedbar());
+  };
   return (
     <div className={cx("wrap")}>
       <Flex align="center" justify="space-between" className={cx("container")}>
@@ -154,7 +159,11 @@ const Navbar: FunctionComponent<NavbarProps> = () => {
           ></Image>
           <span className={cx("right-count")}>0</span>
         </div>
-        <div className={cx("bars")}>
+        <div
+          className={cx("bars")}
+          onClick={handleToggleStatusSidebar}
+          style={{ padding: "8px 16px" }}
+        >
           <IconMenu2 width={24} height={24} stroke={3}></IconMenu2>
         </div>
       </Flex>

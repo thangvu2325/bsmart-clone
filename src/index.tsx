@@ -35,6 +35,9 @@ root.render(
                 colorIcon: "#fff",
                 linkHoverColor: "#ff630e",
               },
+              Pagination: {
+                itemBg: "#f5f5f5",
+              },
             },
           }}
         >

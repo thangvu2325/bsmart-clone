@@ -14,12 +14,14 @@ interface CardCourseProps {
   data: courseType;
   className?: string;
 }
-const BugImage: Array<string> = [
-  "https://bsmart.edu.vn/files/Levels/1/ant-icon-01.webp",
-  "https://bsmart.edu.vn/files/Levels/1/ant-icon-02.webp",
-  "https://bsmart.edu.vn/files/Levels/1/ant-icon-03.webp",
-  "https://bsmart.edu.vn/files/Levels/1/ant-icon-04.webp",
-];
+const BugImage = {
+  cap_toc: "https://bsmart.edu.vn/assets/images/captoc.webp",
+  de: "https://bsmart.edu.vn/files/Levels/1/ant-icon-01.webp",
+  trung_binh: "https://bsmart.edu.vn/files/Levels/1/ant-icon-02.webp",
+  kho: "https://bsmart.edu.vn/files/Levels/1/ant-icon-03.webp",
+  cuc_kho: "https://bsmart.edu.vn/files/Levels/1/ant-icon-04.webp",
+};
+
 const CardCourse: FunctionComponent<CardCourseProps> = ({
   data,
   className,
@@ -51,7 +53,7 @@ const CardCourse: FunctionComponent<CardCourseProps> = ({
           </Link>
           <div className={cx("image_bug")}>
             <Image
-              src={BugImage[data?.level ? data.level - 1 : 0]}
+              src={(BugImage as any)[data.level]}
               preview={false}
               width={50}
               height={50}

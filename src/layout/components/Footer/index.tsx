@@ -8,6 +8,7 @@ import {
   IconLinkedin,
   IconYoutube,
 } from "../../../components/Icon";
+import routes from "../../../config/route";
 const cx = classNames.bind(styles);
 interface FooterProps {}
 
@@ -36,14 +37,23 @@ const Footer: FunctionComponent<FooterProps> = () => {
               Theo dõi chúng tôi tại:
             </h6>
             <Flex className={cx("left_brand-list")}>
-              <Link to="/" className={cx("left_icon-brand")}>
+              <Link
+                to="https://www.facebook.com/bsmart.edu.vn"
+                className={cx("left_icon-brand")}
+              >
                 <IconFacebook width={"18px"} height={"18px"}></IconFacebook>
               </Link>
-              <Link to="/" className={cx("left_icon-brand")}>
+              <Link
+                to="https://www.linkedin.com/company/amazingtech74"
+                className={cx("left_icon-brand")}
+              >
                 <IconLinkedin width={"18px"} height={"18px"}></IconLinkedin>
               </Link>
 
-              <Link to={"/"} className={cx("left_icon-brand")}>
+              <Link
+                to={"https://www.youtube.com/channel/UCxuIkuRJkam2Ii3xPehiirw"}
+                className={cx("left_icon-brand")}
+              >
                 <IconYoutube width={"18px"} height={"18px"}></IconYoutube>
               </Link>
             </Flex>
@@ -57,25 +67,25 @@ const Footer: FunctionComponent<FooterProps> = () => {
             <h4 className={cx("title")}>Menu</h4>
             <ul className={cx("list")}>
               <li>
-                <Link to={"/"}>Trang chủ</Link>
+                <Link to={routes.home}>Trang chủ</Link>
               </li>
               <li>
-                <Link to={"/"}>Về chúng tôi</Link>
+                <Link to={routes.aboutus}>Về chúng tôi</Link>
               </li>
               <li>
-                <Link to={"/"}>Nền tảng LMS</Link>
+                <Link to={routes.course}>Nền tảng LMS</Link>
               </li>
               <li>
-                <Link to={"/"}>Khoá học STEM</Link>
+                <Link to={routes.stem}>Khoá học STEM</Link>
               </li>
               <li>
-                <Link to={"/"}>Khoá học</Link>
+                <Link to={routes.course}>Khoá học</Link>
               </li>
               <li>
-                <Link to={"/"}>Mentor</Link>
+                <Link to={routes.mentor}>Mentor</Link>
               </li>
               <li>
-                <Link to={"/"}>Blog</Link>
+                <Link to={routes.blog}>Blog</Link>
               </li>
             </ul>
           </div>

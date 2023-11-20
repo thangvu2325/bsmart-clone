@@ -2,6 +2,7 @@ import { FunctionComponent } from "react";
 import styles from "./Banner.module.scss";
 import classNames from "classnames/bind";
 import ButtonCustom from "../../../components/Button";
+import routes from "../../../config/route";
 
 const cx = classNames.bind(styles);
 interface BannerProps {}
@@ -21,7 +22,7 @@ const Banner: FunctionComponent<BannerProps> = () => {
           nghiệp
         </p>
         <span className={cx("caption_btn")}>
-          <ButtonCustom to="/" className={cx("btn")} primary>
+          <ButtonCustom to={routes.course} className={cx("btn")} primary>
             <span>XEM KHÓA HỌC</span>
           </ButtonCustom>
         </span>
