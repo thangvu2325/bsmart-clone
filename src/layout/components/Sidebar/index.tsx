@@ -3,7 +3,7 @@ import styles from "./Sidebar.module.scss";
 import classNames from "classnames/bind";
 import { Flex, Image, Input } from "antd";
 import { IconMinus, IconPlus, IconSearch, IconX } from "@tabler/icons-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import routes from "../../../config/route";
 import { sidebarStateSelector } from "../../../redux/selectors";
 import {
@@ -19,14 +19,15 @@ interface SidebarProps {}
 interface CreateElementProps {
   children: ReactNode;
   title: string;
+  to: string;
 }
 const CreateElement: FunctionComponent<CreateElementProps> = ({
   title,
   children,
+  to,
 }) => {
   const [icon, setIcon] = useState<boolean>(false);
   const ref = useRef<HTMLDivElement>(null);
-
   const handleClick = () => {
     setIcon(!icon);
     if (ref.current) {
@@ -39,26 +40,24 @@ const CreateElement: FunctionComponent<CreateElementProps> = ({
   };
   return (
     <li>
-      <Link to={routes.stem}>
-        {title}
-        <span
-          style={{
-            position: "absolute",
-            right: "0",
-            top: "0",
-            padding: "12px 0 12px 12px",
-            zIndex: "22",
-          }}
-        >
-          <span onClick={handleClick} style={{ padding: "8px" }}>
-            {icon ? (
-              <IconMinus width={12} height={12}></IconMinus>
-            ) : (
-              <IconPlus width={12} height={12}></IconPlus>
-            )}
-          </span>
+      <Link to={to}>{title}</Link>
+      <span
+        style={{
+          position: "absolute",
+          right: "0",
+          top: "0",
+          padding: "12px 0 12px 12px",
+          zIndex: "22",
+        }}
+      >
+        <span onClick={handleClick} style={{ padding: "8px" }}>
+          {icon ? (
+            <IconMinus width={12} height={12}></IconMinus>
+          ) : (
+            <IconPlus width={12} height={12}></IconPlus>
+          )}
         </span>
-      </Link>
+      </span>
       <div className={cx("sub-menu")} ref={ref}>
         <ul>{children}</ul>
       </div>
@@ -71,6 +70,9 @@ const Sidebar: FunctionComponent<SidebarProps> = () => {
   const handleToggleStatusSidebar = () => {
     dispatch(toggleStateSidedbar());
   };
+  const [searchValue, setSearchValue] = useState<string>("");
+  const navigate = useNavigate();
+
   return (
     <>
       <div
@@ -116,7 +118,7 @@ const Sidebar: FunctionComponent<SidebarProps> = () => {
               <li>
                 <Link to={routes.home}>TRANG CHỦ</Link>
               </li>
-              <CreateElement title="VỀ CHÚNG TÔI">
+              <CreateElement title="VỀ CHÚNG TÔI" to={routes.aboutus}>
                 <li>
                   <Link to={routes.home}>CÂU CHUYỆN FOUNDER</Link>
                 </li>
@@ -127,24 +129,36 @@ const Sidebar: FunctionComponent<SidebarProps> = () => {
               <li>
                 <Link to={routes.home}>KHÓA HỌC STEM</Link>
               </li>
-              <CreateElement title="KHÓA HỌC">
+              <CreateElement title="KHÓA HỌC" to={routes.course}>
                 <li>
-                  <Link to={routes.home}>BACK-END</Link>
+                  <Link to={`${routes.course}?filterCourseCate=backend`}>
+                    BACK-END
+                  </Link>
                 </li>
                 <li>
-                  <Link to={routes.home}>BACK-END</Link>
+                  <Link to={`${routes.course}?filterCourseCate=frontend`}>
+                    FRONT-END
+                  </Link>
                 </li>
                 <li>
-                  <Link to={routes.home}>DATABASE</Link>
+                  <Link to={`${routes.course}?filterCourseCate=database`}>
+                    DATABASE
+                  </Link>
                 </li>
                 <li>
-                  <Link to={routes.home}>CẤP TỐC</Link>
+                  <Link to={`${routes.course}?filterCourseCate=cap_toc`}>
+                    CẤP TỐC
+                  </Link>
                 </li>
                 <li>
-                  <Link to={routes.home}>OTHER</Link>
+                  <Link to={`${routes.course}?filterCourseCate=other`}>
+                    OTHER
+                  </Link>
                 </li>
                 <li>
-                  <Link to={routes.home}>STEM</Link>
+                  <Link to={`${routes.course}?filterCourseCate=stem `}>
+                    STEM
+                  </Link>
                 </li>
               </CreateElement>
               <li>
@@ -160,12 +174,18 @@ const Sidebar: FunctionComponent<SidebarProps> = () => {
               <Input
                 allowClear
                 className={cx("seach_input")}
+                value={searchValue}
+                onChange={(e) => setSearchValue(e.target.value)}
                 suffix={
                   <IconSearch
                     className={cx("seach-icon")}
                     width={18}
                     height={18}
                     stroke={3}
+                    onClick={() => {
+                      navigate(`/course?NameCourse=${searchValue}`);
+                      dispatch(toggleStateSidedbar());
+                    }}
                   ></IconSearch>
                 }
                 placeholder="Tìm Kiếm Khóa Học"

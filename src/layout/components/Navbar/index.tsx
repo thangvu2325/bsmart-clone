@@ -2,7 +2,7 @@ import { FunctionComponent } from "react";
 import styles from "./Navbar.module.scss";
 import classNames from "classnames/bind";
 import { Flex, Image, MenuProps } from "antd";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import MenuDropdown from "../../../components/MenuDropdown";
 import { IconMenu2 } from "@tabler/icons-react";
 import routes from "../../../config/route";
@@ -21,32 +21,7 @@ const aboutUsItems: MenuProps["items"] = [
     label: "Nền Tảng LMS",
   },
 ];
-const courseItems: MenuProps["items"] = [
-  {
-    key: "1",
-    label: "Back-End",
-  },
-  {
-    key: "2",
-    label: "Front-End",
-  },
-  {
-    key: "3",
-    label: "Database",
-  },
-  {
-    key: "4",
-    label: "Cấp tốc",
-  },
-  {
-    key: "5",
-    label: "Other",
-  },
-  {
-    key: "6",
-    label: "STEM",
-  },
-];
+
 const blogItems: MenuProps["items"] = [
   {
     key: "1",
@@ -65,13 +40,14 @@ const Navbar: FunctionComponent<NavbarProps> = () => {
   const location = useLocation();
   const { pathname } = location;
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const handleToggleStatusSidebar = () => {
     dispatch(toggleStateSidedbar());
   };
   return (
     <div className={cx("wrap")}>
       <Flex align="center" justify="space-between" className={cx("container")}>
-        <div className={cx("left")}>
+        <Link to={routes.home} className={cx("left")}>
           <Image
             src="https://bsmart.edu.vn/files/icon-logo.webp"
             preview={false}
@@ -79,7 +55,7 @@ const Navbar: FunctionComponent<NavbarProps> = () => {
             width={220}
             height={80}
           ></Image>
-        </div>
+        </Link>
         <div className={cx("middle")}>
           <Flex align="center" className={cx("content")}>
             <div className={cx("content-title")}>
@@ -115,7 +91,52 @@ const Navbar: FunctionComponent<NavbarProps> = () => {
               </Link>
             </div>
             <div className={cx("content-title")}>
-              <MenuDropdown menu={courseItems}>
+              <MenuDropdown
+                menu={[
+                  {
+                    key: "1",
+                    label: "Back-End",
+                    onClick: () => {
+                      navigate(`/course?filterCourseCate=backend`);
+                    },
+                  },
+                  {
+                    key: "2",
+                    label: "Front-End",
+                    onClick: () => {
+                      navigate(`/course?filterCourseCate=frontend`);
+                    },
+                  },
+                  {
+                    key: "3",
+                    label: "Database",
+                    onClick: () => {
+                      navigate(`/course?filterCourseCate=database`);
+                    },
+                  },
+                  {
+                    key: "4",
+                    label: "Cấp tốc",
+                    onClick: () => {
+                      navigate(`/course?filterCourseCate=cap_toc`);
+                    },
+                  },
+                  {
+                    key: "5",
+                    label: "Other",
+                    onClick: () => {
+                      navigate(`/course?filterCourseCate=other`);
+                    },
+                  },
+                  {
+                    key: "6",
+                    label: "STEM",
+                    onClick: () => {
+                      navigate(`/course?filterCourseCate=stem`);
+                    },
+                  },
+                ]}
+              >
                 <Link
                   to={routes.course}
                   className={cx("", {

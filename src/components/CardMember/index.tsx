@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, memo } from "react";
 import { courseType } from "../../type/type";
 import { Flex, Image } from "antd";
 import classNames from "classnames/bind";
@@ -35,4 +35,4 @@ const CardMember: FunctionComponent<CardMemberProps> = ({ data }) => {
   );
 };
 
-export default CardMember;
+export default memo(CardMember);

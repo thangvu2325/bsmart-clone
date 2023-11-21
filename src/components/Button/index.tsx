@@ -1,7 +1,7 @@
 import classNames from "classnames/bind";
 import { Link } from "react-router-dom";
 import styles from "./Button.module.scss";
-import { ReactNode } from "react";
+import { ReactNode, memo } from "react";
 
 interface ButtonCustomProps
   extends React.HTMLAttributes<HTMLButtonElement | HTMLAnchorElement> {
@@ -89,4 +89,4 @@ function ButtonCustom({
   );
 }
 
-export default ButtonCustom;
+export default memo(ButtonCustom);

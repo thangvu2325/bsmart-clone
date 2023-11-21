@@ -1,16 +1,10 @@
-import {
-  FunctionComponent,
-  useRef,
-  ReactNode,
-  useEffect,
-  useState,
-} from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 import styles from "./Course.module.scss";
 import classNames from "classnames/bind";
 import BannerCourse from "../../components/BannerCourse";
 import { Dropdown, Flex, Image, Input, MenuProps, Pagination } from "antd";
 import ButtonCustom from "../../components/Button";
-import { IconArrowDown, IconChevronDown } from "@tabler/icons-react";
+import { IconChevronDown } from "@tabler/icons-react";
 import CardCourse from "../../components/CardCourse";
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
 import { coursesRemainingSelector } from "../../redux/selectors";
@@ -18,13 +12,11 @@ import { useSearchParams } from "react-router-dom";
 import { NumericFormat } from "react-number-format";
 import { changeFilter } from "../../redux/coursesFilterSlice";
 import { courseType } from "../../type/type";
+import CourseFilter from "./CourseFilter";
 
 const cx = classNames.bind(styles);
 interface CoursePageProps {}
-interface CreateElementProps {
-  children: ReactNode;
-  title: string;
-}
+
 const ITEM_PER_PAGE = 9;
 
 const getItemsForCurrentPage = (
@@ -42,48 +34,13 @@ const sortData = {
   az: "A - Z",
   za: "Z - A",
 };
-const CreateElement: FunctionComponent<CreateElementProps> = ({
-  title,
-  children,
-}) => {
-  const ref = useRef<HTMLDivElement>(null);
 
-  const handleClick = () => {
-    if (ref.current) {
-      if (ref.current.style.height === "100%") {
-        ref.current.style.height = "0";
-      } else {
-        ref.current.style.height = "100%";
-      }
-    }
-  };
-  return (
-    <div className={cx("row")} onClick={handleClick}>
-      <div className={cx("title")} style={{ marginTop: "10px" }}>
-        <Flex align="center" style={{ fontSize: "1.7rem" }}>
-          <IconArrowDown
-            width={18}
-            height={18}
-            stroke={4}
-            style={{ marginRight: "8px", display: "none" }}
-            className={cx("icon")}
-          ></IconArrowDown>
-          {title}
-        </Flex>
-      </div>
-      <div className={cx("row-content")} ref={ref}>
-        {children}
-      </div>
-    </div>
-  );
-};
 const CoursePage: FunctionComponent<CoursePageProps> = () => {
   const coursesList = useAppSelector(coursesRemainingSelector);
   const [searchParams, setSearchParams] = useSearchParams();
   const [pf, setPf] = useState<string | null>(
     searchParams.get("pf") || "0 VND"
   );
-  console.log(coursesList);
   const [pt, setPt] = useState<string | null>(
     searchParams.get("pt") || "10,000,000 VND"
   );
@@ -130,6 +87,7 @@ const CoursePage: FunctionComponent<CoursePageProps> = () => {
         sort,
         filterCourseCate,
         typeOfLearning,
+        NameCourse: searchParams.get("NameCourse") ?? "",
       })
     );
     document.title = "Khóa học - Bsmart học cùng mentor";
@@ -251,7 +209,7 @@ const CoursePage: FunctionComponent<CoursePageProps> = () => {
       <div className={cx("container")}>
         <Flex justify="flex-start" className={cx("content")} wrap="wrap">
           <form className={cx("menu")}>
-            <CreateElement title={"KHOẢNG GIÁ"}>
+            <CourseFilter title={"KHOẢNG GIÁ"}>
               <Flex className={cx("price_from")} vertical>
                 <span className={cx("price_text")}>Từ giá</span>
                 <NumericFormat
@@ -284,8 +242,8 @@ const CoursePage: FunctionComponent<CoursePageProps> = () => {
                   }}
                 />
               </Flex>
-            </CreateElement>
-            <CreateElement title={"Hình Thức Học"}>
+            </CourseFilter>
+            <CourseFilter title={"Hình Thức Học"}>
               <div className={cx("learning")}>
                 <Input
                   type="checkbox"
@@ -344,8 +302,8 @@ const CoursePage: FunctionComponent<CoursePageProps> = () => {
                   Ofline
                 </span>
               </div>
-            </CreateElement>
-            <CreateElement title={"Trình Độ"}>
+            </CourseFilter>
+            <CourseFilter title={"Trình Độ"}>
               <Flex
                 className={cx("level")}
                 align="center"
@@ -511,8 +469,8 @@ const CoursePage: FunctionComponent<CoursePageProps> = () => {
                   preview={false}
                 ></Image>
               </Flex>
-            </CreateElement>
-            <CreateElement title={"LĨNH VỰC"}>
+            </CourseFilter>
+            <CourseFilter title={"LĨNH VỰC"}>
               <div className={cx("filterCourseCate")}>
                 <Input
                   type="checkbox"
@@ -692,7 +650,7 @@ const CoursePage: FunctionComponent<CoursePageProps> = () => {
                   STEM
                 </span>
               </div>
-            </CreateElement>
+            </CourseFilter>
             <div className={cx("row")}>
               <ButtonCustom type="submit" primary className={cx("btn")}>
                 Tìm kiếm
@@ -743,6 +701,7 @@ const CoursePage: FunctionComponent<CoursePageProps> = () => {
                       (course) => (
                         <div className={cx("col")} key={course.courseId}>
                           <CardCourse
+                            divider={true}
                             className={cx("col-card")}
                             data={course}
                           ></CardCourse>

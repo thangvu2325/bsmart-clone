@@ -1,6 +1,6 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, memo } from "react";
 import { courseType } from "../../type/type";
-import { Flex, Image } from "antd";
+import { Divider, Flex, Image } from "antd";
 import classNames from "classnames/bind";
 import styles from "./CardCourse.module.scss";
 import { Link } from "react-router-dom";
@@ -13,6 +13,7 @@ const cx = classNames.bind(styles);
 interface CardCourseProps {
   data: courseType;
   className?: string;
+  divider: boolean;
 }
 const BugImage = {
   cap_toc: "https://bsmart.edu.vn/assets/images/captoc.webp",
@@ -25,6 +26,7 @@ const BugImage = {
 const CardCourse: FunctionComponent<CardCourseProps> = ({
   data,
   className,
+  divider,
 }) => {
   return (
     <Flex justify="center" className={cx("wrap")}>
@@ -105,7 +107,14 @@ const CardCourse: FunctionComponent<CardCourseProps> = ({
               <span> {data.session} Buổi học</span>
             </Flex>
           </Flex>
-          <ButtonCustom className={cx("btn")} primary>
+          {divider ? <Divider style={{ margin: "16px 0 0 0" }}></Divider> : ""}
+
+          <ButtonCustom
+            className={cx("btn", {
+              divider,
+            })}
+            primary
+          >
             XEM CHI TIẾT
           </ButtonCustom>
         </div>
@@ -114,4 +123,4 @@ const CardCourse: FunctionComponent<CardCourseProps> = ({
   );
 };
 
-export default CardCourse;
+export default memo(CardCourse);

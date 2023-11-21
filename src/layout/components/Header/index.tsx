@@ -1,4 +1,4 @@
-import { FunctionComponent, useState, useEffect, useRef } from "react";
+import { FunctionComponent, useState, useEffect, useRef, memo } from "react";
 import { Flex, Image } from "antd";
 import styles from "./Header.module.scss";
 import classNames from "classnames/bind";
@@ -54,19 +54,16 @@ const Header: FunctionComponent<HeaderProps> = () => {
   }
   useEffect(() => {
     const handleScroll = () => {
-      // Kiểm tra vị trí scroll để xác định khi nào ở đầu và khi nào đã cuộn xuống
       const scrollTop = window.scrollY;
       if (scrollTop === 0) {
-        setIsScrolled(false); // Ở đầu trang
+        setIsScrolled(false);
       } else {
-        setIsScrolled(true); // Cuộn xuống
+        setIsScrolled(true);
       }
     };
 
-    // Thêm sự kiện cuộn
     window.addEventListener("scroll", handleScroll);
 
-    // Cleanup sự kiện khi component bị unmount
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
@@ -177,4 +174,4 @@ const Header: FunctionComponent<HeaderProps> = () => {
   );
 };
 
-export default Header;
+export default memo(Header);

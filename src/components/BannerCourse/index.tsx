@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, memo } from "react";
 import styles from "./BannerCourse.module.scss";
 import classNames from "classnames/bind";
 import { Breadcrumb } from "antd";
@@ -30,4 +30,4 @@ const BannerCourse: FunctionComponent<BannerCourseProps> = ({ items }) => {
   );
 };
 
-export default BannerCourse;
+export default memo(BannerCourse);
