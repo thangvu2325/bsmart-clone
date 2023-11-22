@@ -171,7 +171,7 @@ const Navbar: FunctionComponent<NavbarProps> = () => {
             </div>
           </Flex>
         </div>
-        <div className={cx("right")}>
+        <div className={cx("right")} style={{ cursor: "pointer" }}>
           <Image
             src="https://bsmart.edu.vn/files/icon-shopping-cart.webp"
             preview={false}

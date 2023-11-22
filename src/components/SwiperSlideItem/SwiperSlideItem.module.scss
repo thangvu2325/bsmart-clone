@@ -6,7 +6,7 @@
     top: 50%;
     transform: translateY(-50%);
     left: -24px;
-    z-index: 90;
+    z-index: 18;
     svg {
       color: #909294;
       font-weight: 400;
@@ -26,7 +26,7 @@
     top: 50%;
     transform: translateY(-50%);
     right: -24px;
-    z-index: 90;
+    z-index: 18;
     svg {
       color: #909294;
       font-weight: 400;
@@ -39,30 +39,6 @@
     }
     .icon {
       font-size: 6rem;
-    }
-  }
-  .dots {
-    margin-top: 30px;
-    .active {
-      span {
-        background: #869791 !important;
-      }
-    }
-    .dot {
-      display: inline-block;
-      background: 0 0;
-      border: none;
-      padding: 0 !important;
-      span {
-        cursor: pointer;
-        width: 10px;
-        height: 10px;
-        margin: 5px 7px;
-        background: #d6d6d6;
-        display: block;
-        transition: opacity 0.2s ease;
-        border-radius: 30px;
-      }
     }
   }
 }

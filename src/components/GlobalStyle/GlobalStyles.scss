@@ -40,6 +40,9 @@ body {
     background: var(--primary) !important;
     color: #fff !important;
   }
+  .swiper-pagination-bullet-active {
+    background: #869791 !important;
+  }
 }
 
 * {

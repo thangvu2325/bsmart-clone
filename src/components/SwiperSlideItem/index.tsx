@@ -1,8 +1,11 @@
-import { FunctionComponent, useState, useCallback, useRef } from "react";
+import { FunctionComponent, useCallback, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { IconChevronLeft, IconChevronRight } from "../Icon";
 import styles from "./SwiperSlideItem.module.scss";
 import classNames from "classnames/bind";
+import "swiper/css";
+import "swiper/css/pagination";
+import { Pagination } from "swiper/modules";
 const cx = classNames.bind(styles);
 interface SwiperSliderItemProps {
   spaceBetween?: number;
@@ -21,11 +24,6 @@ const SwiperSliderItem: FunctionComponent<SwiperSliderItemProps> = ({
   ...props
 }) => {
   const sliderRef: any = useRef(null);
-  const [activeDot, setActiveDot] = useState<number>(0);
-  const dots: number = data?.length / 4 + (data?.length % 4 !== 0 ? 1 : 0);
-  const handleSlideChange = (swiper: any) => {
-    setActiveDot(Math.floor(swiper.activeIndex / 4));
-  };
   const handlePrev = useCallback(() => {
     if (!sliderRef.current) return;
     sliderRef.current?.swiper.slidePrev();
@@ -35,34 +33,17 @@ const SwiperSliderItem: FunctionComponent<SwiperSliderItemProps> = ({
     if (!sliderRef.current) return;
     sliderRef.current?.swiper.slideNext();
   }, []);
-  const setActiveIndexSlide = useCallback((index: number) => {
-    if (!sliderRef.current) return;
-    sliderRef.current?.swiper.slideTo(index);
-  }, []);
-  const renderDots = () => {
-    return Array.from({ length: dots }, (_, index) => {
-      return (
-        <button
-          key={index}
-          className={cx("dot", {
-            active: index === activeDot,
-          })}
-          onClick={() => {
-            setActiveIndexSlide(index * 4);
-            setActiveDot(index);
-          }}
-        >
-          <span></span>
-        </button>
-      );
-    });
-  };
+
   return (
     <div className={cx("swiper")}>
       <Swiper
         ref={sliderRef}
         {...props}
-        onSlideChange={(swiper: any) => handleSlideChange(swiper)} // Sự kiện khi chuyển slide
+        pagination={{
+          clickable: true,
+        }}
+        modules={[Pagination]}
+        style={{ paddingBottom: "50px" }}
       >
         {data?.length
           ? data.map((item) => (
@@ -86,8 +67,6 @@ const SwiperSliderItem: FunctionComponent<SwiperSliderItemProps> = ({
       ) : (
         ""
       )}
-
-      <div className={cx("dots")}>{renderDots()}</div>
     </div>
   );
 };

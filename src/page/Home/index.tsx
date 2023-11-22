@@ -3,7 +3,7 @@ import classNames from "classnames/bind";
 import "swiper/css";
 import styles from "./Home.module.scss";
 import Banner from "../../layout/components/Banner";
-import { Flex, Image } from "antd";
+import { Col, Flex, Image, Row } from "antd";
 import ButtonCustom from "../../components/Button";
 import { IconCircleCheck } from "@tabler/icons-react";
 import {
@@ -97,8 +97,8 @@ const Home: FunctionComponent<HomeProps> = () => {
       <section className={cx("advantage")}>
         <div className={cx("advantage_container")}>
           <h2 className={cx("container_title")}>Điểm ưu việt tại BSmart</h2>
-          <Flex className={cx("advantage_content")} wrap="wrap">
-            <div className={cx("card")}>
+          <Row className={cx("advantage_content")}>
+            <Col className={cx("card")} span={24} lg={{ span: "8" }}>
               <Flex className={cx("title")} align="center">
                 <IconCircleCheck
                   width={30}
@@ -113,8 +113,8 @@ const Home: FunctionComponent<HomeProps> = () => {
                 phát triển năng lực và niềm đam mê lập trình của bạn để có việc
                 ngay sau khi học.
               </div>
-            </div>
-            <div className={cx("card")}>
+            </Col>
+            <Col className={cx("card")} span={24} lg={{ span: "8" }}>
               <Flex className={cx("title")} align="center">
                 <IconCogsSetting className={cx("icon")}></IconCogsSetting>
                 <h4>Nền tảng cốt lõi trong lập trình</h4>
@@ -124,8 +124,8 @@ const Home: FunctionComponent<HomeProps> = () => {
                 trong lập trình. Bạn sẽ tự tin trước sự thay đổi của công nghệ
                 và môi trường làm việc.
               </div>
-            </div>
-            <div className={cx("card")}>
+            </Col>
+            <Col className={cx("card")} span={24} lg={{ span: "8" }}>
               <Flex className={cx("title")} align="center">
                 <IconFire className={cx("icon")}></IconFire>
                 <h4>Mài giũa bạn qua thực tế</h4>
@@ -135,11 +135,11 @@ const Home: FunctionComponent<HomeProps> = () => {
                 thực tế tại các công ty lớn sẽ truyền đạt những kinh nghiệm "máu
                 lửa" cho bạn.
               </div>
-            </div>
-          </Flex>
+            </Col>
+          </Row>
 
-          <Flex className={cx("advantage_content")} wrap="wrap">
-            <div className={cx("card")}>
+          <Row className={cx("advantage_content")} align={"middle"}>
+            <Col className={cx("card")} span={24} lg={{ span: "8" }}>
               <Flex className={cx("title")} align="center">
                 <IconUsers className={cx("icon")}></IconUsers>
                 <h4>Mentor tận tâm</h4>
@@ -149,8 +149,8 @@ const Home: FunctionComponent<HomeProps> = () => {
                 vai trò một thành viên trong quy trình Scrum, Agile. Được Mentor
                 hỗ trợ tận tâm, nhiệt tình.
               </div>
-            </div>
-            <div className={cx("card")}>
+            </Col>
+            <Col className={cx("card")} span={24} lg={{ span: "8" }}>
               <Flex className={cx("title")} align="center">
                 <IconQrcode width="24" className={cx("icon")}></IconQrcode>
                 <h4>Công nghệ mới, thực tế</h4>
@@ -159,8 +159,8 @@ const Home: FunctionComponent<HomeProps> = () => {
                 Bạn được học và trải nghiệm các công nghệ lập trình mới nhất,
                 chuyên sâu, bám sát nhu cầu tuyển dụng thực tế từ doanh nghiệp.
               </div>
-            </div>
-            <div className={cx("card")}>
+            </Col>
+            <Col className={cx("card")} span={24} lg={{ span: "8" }}>
               <Flex className={cx("title")} align="center">
                 <IconTrophy width="28" className={cx("icon")}></IconTrophy>
                 <h4>Trao tay chìa khóa thành công</h4>
@@ -169,8 +169,8 @@ const Home: FunctionComponent<HomeProps> = () => {
                 Hướng dẫn viết CV, phỏng vấn. Kết nối, gặp gỡ, phỏng vấn cùng
                 doanh nghiệp ngay sau khi tốt nghiệp.
               </div>
-            </div>
-          </Flex>
+            </Col>
+          </Row>
         </div>
       </section>
       <section className={cx("learning")}>

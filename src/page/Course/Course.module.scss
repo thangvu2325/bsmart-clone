@@ -7,8 +7,6 @@
       margin: 0 auto;
 
       .menu {
-        flex: 0 0 auto;
-        width: 25%;
         padding: 0 12px;
         .row {
           flex-shrink: 0;
@@ -87,16 +85,12 @@
         }
       }
       .course-list {
-        flex: 0 0 auto;
-        width: 75%;
         padding: 0 12px;
         .main-course {
           margin-top: 16px;
           .row {
             .col {
               display: block;
-              width: calc(100% / 3);
-              flex: 0 0 auto;
               margin-bottom: 1rem !important;
               .col-card {
                 width: 100% !important;
@@ -206,14 +200,6 @@
   .content {
     max-width: 720px !important;
   }
-  .course-list {
-    flex: 0 0 auto !important;
-    width: 58.33333333% !important;
-  }
-  .menu {
-    flex: 0 0 auto !important;
-    width: 41.66666667% !important;
-  }
   .menu {
     .row {
       .row-content {
@@ -226,20 +212,8 @@
   .content {
     max-width: 960px !important;
   }
-  .menu {
-    flex: 0 0 auto !important;
-    width: 25% !important;
-  }
-  .course-list {
-    flex: 0 0 auto !important;
-    width: 75% !important;
-  }
 }
 @media only screen and (max-width: 992px) {
-  .col {
-    flex: 0 0 auto !important;
-    width: 100% !important;
-  }
   .course-list_header {
     flex-direction: column;
     justify-content: flex-start !important;
@@ -249,12 +223,7 @@
     margin-top: 10px !important;
   }
 }
-@media only screen and (min-width: 992px) and (max-width: 1200px) {
-  .col {
-    flex: 0 0 auto !important;
-    width: 50% !important;
-  }
-}
+
 @media only screen and (min-width: 1200px) {
   .content {
     max-width: 1320px !important;
