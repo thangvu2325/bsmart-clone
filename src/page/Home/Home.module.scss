@@ -47,8 +47,11 @@
           .left_btn {
             margin-top: 16px;
             .btn {
-              padding: 14px;
+              padding: 14px 20px;
               margin-bottom: 20px;
+              line-height: 21px;
+              font-size: 14px;
+              text-wrap: nowrap;
             }
           }
         }
