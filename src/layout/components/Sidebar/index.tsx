@@ -130,32 +130,56 @@ const Sidebar: FunctionComponent<SidebarProps> = () => {
                 <Link to={routes.home}>KHÓA HỌC STEM</Link>
               </li>
               <CreateElement title="KHÓA HỌC" to={routes.course}>
-                <li>
+                <li
+                  onClick={() => {
+                    dispatch(toggleStateSidedbar());
+                  }}
+                >
                   <Link to={`${routes.course}?filterCourseCate=backend`}>
                     BACK-END
                   </Link>
                 </li>
-                <li>
+                <li
+                  onClick={() => {
+                    dispatch(toggleStateSidedbar());
+                  }}
+                >
                   <Link to={`${routes.course}?filterCourseCate=frontend`}>
                     FRONT-END
                   </Link>
                 </li>
-                <li>
+                <li
+                  onClick={() => {
+                    dispatch(toggleStateSidedbar());
+                  }}
+                >
                   <Link to={`${routes.course}?filterCourseCate=database`}>
                     DATABASE
                   </Link>
                 </li>
-                <li>
+                <li
+                  onClick={() => {
+                    dispatch(toggleStateSidedbar());
+                  }}
+                >
                   <Link to={`${routes.course}?filterCourseCate=cap_toc`}>
                     CẤP TỐC
                   </Link>
                 </li>
-                <li>
+                <li
+                  onClick={() => {
+                    dispatch(toggleStateSidedbar());
+                  }}
+                >
                   <Link to={`${routes.course}?filterCourseCate=other`}>
                     OTHER
                   </Link>
                 </li>
-                <li>
+                <li
+                  onClick={() => {
+                    dispatch(toggleStateSidedbar());
+                  }}
+                >
                   <Link to={`${routes.course}?filterCourseCate=stem `}>
                     STEM
                   </Link>

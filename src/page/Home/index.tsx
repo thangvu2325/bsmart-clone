@@ -14,8 +14,7 @@ import {
   IconUsers,
 } from "../../components/Icon";
 import SwiperSliderItem from "../../components/SwiperSlideItem";
-import CardCourse from "../../components/CardCourse";
-import CardMember from "../../components/CardMember";
+import CardCommon from "../../components/CardCommon";
 import { useAppSelector } from "../../redux/hook";
 import {
   getUrgentlyCoursesSelecter,
@@ -80,7 +79,7 @@ const Home: FunctionComponent<HomeProps> = () => {
                   primary
                   className={cx("btn")}
                 >
-                  HỖ TRỢ KHÓA HỌC
+                  HỖ TRỢ TƯ VẤN
                 </ButtonCustom>
               </Flex>
             </div>
@@ -195,7 +194,7 @@ const Home: FunctionComponent<HomeProps> = () => {
           <div className={cx("content")}>
             <h2>Khoá học tiêu biểu</h2>
             <SwiperSliderItem
-              Comp={CardCourse}
+              Comp={CardCommon}
               data={mostFamoustCourses}
               spaceBetween={10}
               slidesPerView={4}
@@ -228,7 +227,7 @@ const Home: FunctionComponent<HomeProps> = () => {
           <div className={cx("content")}>
             <h2>Khoá học cấp tốc</h2>
             <SwiperSliderItem
-              Comp={CardCourse}
+              Comp={CardCommon}
               data={urgentCourse}
               spaceBetween={10}
               slidesPerView={4}
@@ -261,7 +260,8 @@ const Home: FunctionComponent<HomeProps> = () => {
           <div className={cx("content")}>
             <h2>Mentor tiêu biểu</h2>
             <SwiperSliderItem
-              Comp={CardMember}
+              Comp={CardCommon}
+              type={"member"}
               data={mentorList}
               spaceBetween={10}
               slidesPerView={4}

@@ -14,7 +14,6 @@ import {
 } from "antd";
 import ButtonCustom from "../../components/Button";
 import { IconChevronDown } from "@tabler/icons-react";
-import CardCourse from "../../components/CardCourse";
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
 import { coursesRemainingSelector } from "../../redux/selectors";
 import { useSearchParams } from "react-router-dom";
@@ -22,6 +21,7 @@ import { NumericFormat } from "react-number-format";
 import { changeFilter } from "../../redux/coursesFilterSlice";
 import { courseType } from "../../type/type";
 import CourseFilter from "./CourseFilter";
+import CardCommon from "../../components/CardCommon";
 
 const cx = classNames.bind(styles);
 interface CoursePageProps {}
@@ -727,11 +727,11 @@ const CoursePage: FunctionComponent<CoursePageProps> = () => {
                           xl={{ span: "8" }}
                           lg={{ span: "12" }}
                         >
-                          <CardCourse
+                          <CardCommon
                             divider={true}
                             className={cx("col-card")}
                             data={course}
-                          ></CardCourse>
+                          ></CardCommon>
                         </Col>
                       )
                     )

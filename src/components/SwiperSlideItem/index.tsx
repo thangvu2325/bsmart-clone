@@ -15,11 +15,13 @@ interface SwiperSliderItemProps {
   breakpoints: any;
   arrow?: boolean;
   Comp: FunctionComponent<any>;
+  type?: "course" | "member";
 }
 
 const SwiperSliderItem: FunctionComponent<SwiperSliderItemProps> = ({
   data,
   Comp,
+  type = "course",
   arrow = true,
   ...props
 }) => {
@@ -49,7 +51,7 @@ const SwiperSliderItem: FunctionComponent<SwiperSliderItemProps> = ({
           ? data.map((item) => (
               <SwiperSlide key={item.description || Math.random()}>
                 <div>
-                  <Comp data={item}></Comp>
+                  <Comp type={type} data={item}></Comp>
                 </div>
               </SwiperSlide>
             ))
