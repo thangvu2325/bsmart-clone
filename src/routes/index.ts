@@ -2,8 +2,6 @@
 
 // Pages
 import { lazy } from "react";
-// import CoursePage from "../page/Course";
-// import Home from "../page/Home";
 import { RouteType } from "../type/type";
 import routes from "../config/route";
 const Home = lazy(() => import("../page/Home"));
