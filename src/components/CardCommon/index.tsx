@@ -111,7 +111,7 @@ const CardCommon: FunctionComponent<CardCommonProps> = ({
 
           {type === "course" && (
             <Link to="/" className={cx("mentor")}>
-              <span>{data.mentor}</span>
+              Mentor <span>{data.mentor}</span>
             </Link>
           )}
 

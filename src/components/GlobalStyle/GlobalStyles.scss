@@ -15,6 +15,7 @@ body {
   line-height: 1;
   text-rendering: optimizespeed;
   background-color: #fff;
+  contain: paint;
   .ant-dropdown-menu-item {
     &:hover {
       background-color: #fff !important;

@@ -1,10 +1,14 @@
 // Layouts
 
 // Pages
-import CoursePage from "../page/Course";
-import Home from "../page/Home";
+import { lazy } from "react";
+// import CoursePage from "../page/Course";
+// import Home from "../page/Home";
 import { RouteType } from "../type/type";
 import routes from "../config/route";
+const Home = lazy(() => import("../page/Home"));
+const CoursePage = lazy(() => import("../page/Course"));
+
 // Public routes
 
 const publicRoutes: Array<RouteType> = [
