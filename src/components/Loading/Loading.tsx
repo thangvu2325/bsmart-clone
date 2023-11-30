@@ -8,7 +8,7 @@ interface LoadingProps {}
 
 const Loading: FunctionComponent<LoadingProps> = () => {
   return (
-    <div className={cx("container")} style={{}}>
+    <div className={cx("container")}>
       <div className={cx("loader")}>
         <IconLoader className={cx("icon")}></IconLoader>
       </div>
